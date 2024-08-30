@@ -1,3 +1,4 @@
+import { captureRemixErrorBoundaryError, withSentry } from "@sentry/remix";
 import {
   Form,
   NavLink,
@@ -53,6 +54,7 @@ export const meta: MetaFunction = () => {
 export function ErrorBoundary() {
   const error = useRouteError();
   console.error(error);
+  captureRemixErrorBoundaryError(error);
   return (
     <html>
       <head>
@@ -72,7 +74,7 @@ export const links: LinksFunction = () => {
   return [{rel: "stylesheet", href: appStylesHref}]
 }
 
-export default function App() {
+function App() {
   console.log("app component mounted")
   const { contacts, q } = useLoaderData<typeof loader>();
   console.log("Loader" , contacts.length, q);
@@ -168,3 +170,5 @@ export default function App() {
     </html>
   );
 }
+
+export default withSentry(App);

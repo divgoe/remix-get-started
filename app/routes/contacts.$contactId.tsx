@@ -49,7 +49,7 @@ export default function Contact() {
             <div>
                 <img
                 alt={`${contact.first} ${contact.last} avatar`}
-                key={contact.avatar}
+                key={contact.x.avatar}
                 src={contact.avatar}
                 />
             </div>
