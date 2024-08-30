@@ -9,4 +9,10 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  build: {
+    sourcemap: true,
+  },
+  server: {
+    sourcemapIgnoreList: undefined
+  }
 });

@@ -1,5 +1,5 @@
 import { json, LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
-import { Form, Outlet, useFetcher, useLoaderData, useNavigation } from "@remix-run/react";
+import { Form, Outlet, useFetcher, useLoaderData, useNavigation, useRouteError } from "@remix-run/react";
 import type { FunctionComponent } from "react";
 import invariant from "tiny-invariant";
 
@@ -28,6 +28,14 @@ export const action = async ({
       favorite: formData.get("favorite") === "true",
     });
   };
+
+  export function ErrorBoundary() {
+    const error = useRouteError();
+    console.error(error);
+    return (
+      <>fdsfdf</>
+    );
+  }
 
 export default function Contact() {
 

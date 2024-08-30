@@ -10,7 +10,8 @@ import {
   useLoaderData,
   useNavigation,
   useSubmit,
-  MetaFunction
+  MetaFunction,
+  useRouteError
 } from "@remix-run/react";
 import { json } from "@remix-run/node";
 
@@ -49,6 +50,23 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 export const links: LinksFunction = () => {
   return [{rel: "stylesheet", href: appStylesHref}]
